@@ -2,7 +2,7 @@ function! Bimg()
 
 "find path
 execute("normal! \"aya>")
-let l:path_pattern = 'src="\zs[a-zA-Z0-9/.]\+\ze"'
+let l:path_pattern = 'src="\zs[a-zA-Z0-9/.\-\_]\+\ze"'
 let l:image_path = matchstr(@a, l:path_pattern)
 
 "check if it's an <img> tag and if it has src="" attribute
@@ -41,7 +41,7 @@ let l:newtag = substitute(l:newtag, '\s\+', ' ', "g")
 
 "update the tag
 if (exists("l:width") && exists("l:height"))
-	let l:newtag = substitute(l:newtag, '\(src=[a-zA-Z0-9/."]\+\)', '\1 width="' . l:width . '" height="' . l:height . '"', "")
+	let l:newtag = substitute(l:newtag, '\(src=[a-zA-Z0-9/.\-\_"]\+\)', '\1 width="' . l:width . '" height="' . l:height . '"', "")
 	let @a = l:newtag
 	execute("normal! va>\"ap")
 endif
