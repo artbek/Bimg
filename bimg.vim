@@ -23,6 +23,7 @@ image_file = vim.eval("l:image_path")
 try:
 	img = Image.open(image_file)
 	width, height = img.size
+	del img
 	vim.command("let l:width = " + str(width))
 	vim.command("let l:height = " + str(height))
 except IOError:
